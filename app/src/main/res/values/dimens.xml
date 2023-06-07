@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_top">36dp</dimen>
+    <dimen name="card_width">364dp</dimen>
+    <dimen name="card_height">433dp</dimen>
+    <dimen name="card_margin_top">33dp</dimen>
+    <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="button_size">67dp</dimen>
+    <dimen name="icon_size">20dp</dimen>
+    <dimen name="stroke_width">10dp</dimen>
+    <dimen name="button_margin_top">150dp</dimen>
+    <dimen name="submit_button_width">182dp</dimen>
+    <dimen name="submit_button_height">50.46dp</dimen>
+    <dimen name="submit_button_margin_top">86dp</dimen>
+</resources>

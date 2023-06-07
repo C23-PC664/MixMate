@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <permission android:name="WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,18 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MixMate"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.activity.ProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.RecommendationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.CameraActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activity.HomeActivity"
-            android:exported="false" />
         <activity
             android:name=".ui.activity.LoginActivity"
             android:exported="false" />

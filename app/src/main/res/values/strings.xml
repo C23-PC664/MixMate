@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MixMate</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_camera">Camera</string>
+    <string name="menu_recommendation">Recomendation</string>
+    <string name="menu_profile">Profile</string>
 </resources>

@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.MixMate" parent="Base.Theme.MixMate" />
+
+    <style name="BottomNavigationTextAppearance" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
