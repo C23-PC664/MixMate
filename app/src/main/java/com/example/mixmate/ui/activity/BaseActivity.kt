@@ -1,12 +1,9 @@
 package com.example.mixmate.ui.activity
 
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.mixmate.R
-import com.example.mixmate.databinding.ActivityBaseBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BaseActivity : AppCompatActivity() {
@@ -15,16 +12,16 @@ class BaseActivity : AppCompatActivity() {
   private val onNavigationItemSelectedListener =
     BottomNavigationView.OnNavigationItemSelectedListener { item ->
       when (item.itemId) {
-        R.id.nav_home -> {
-          showFragment(HomeFragment())
+        R.id.nav_check -> {
+          showFragment(CheckFragment())
           return@OnNavigationItemSelectedListener true
         }
-        R.id.nav_camera -> {
-          showFragment(CameraFragment())
+        R.id.nav_explore -> {
+          showFragment(ExploreFragment())
           return@OnNavigationItemSelectedListener true
         }
-        R.id.nav_recommendation -> {
-          showFragment(RecommendationFragment())
+        R.id.nav_cart -> {
+          showFragment(CartFragment())
           return@OnNavigationItemSelectedListener true
         }
         R.id.nav_profile -> {
@@ -43,7 +40,7 @@ class BaseActivity : AppCompatActivity() {
     bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
     // Set default fragment
-    showFragment(HomeFragment())
+    showFragment(CheckFragment())
   }
 
   private fun showFragment(fragment: Fragment) {

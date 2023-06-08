@@ -1,23 +1,23 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
-        android:title="@string/menu_home"
+        android:id="@+id/nav_check"
+        android:icon="@drawable/ic_check"
+        android:title="@string/menu_check"
         app:showAsAction="always"
         app:labelVisibilityMode="labeled"/>
 
     <item
-        android:id="@+id/nav_camera"
-        android:icon="@drawable/ic_camera"
-        android:title="@string/menu_camera"
+        android:id="@+id/nav_explore"
+        android:icon="@drawable/ic_exploration"
+        android:title="@string/menu_explore"
         app:showAsAction="always"
         app:labelVisibilityMode="labeled"/>
 
     <item
-        android:id="@+id/nav_recommendation"
-        android:icon="@drawable/ic_recommendation"
-        android:title="@string/menu_recommendation"
+        android:id="@+id/nav_cart"
+        android:icon="@drawable/ic_cart"
+        android:title="@string/menu_cart"
         app:showAsAction="always"
         app:labelVisibilityMode="labeled"/>
 

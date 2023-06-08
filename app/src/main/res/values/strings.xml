@@ -4,4 +4,7 @@
     <string name="menu_camera">Camera</string>
     <string name="menu_recommendation">Recomendation</string>
     <string name="menu_profile">Profile</string>
+    <string name="menu_check">Check</string>
+    <string name="menu_cart">Cart</string>
+    <string name="menu_explore">Explore</string>
 </resources>

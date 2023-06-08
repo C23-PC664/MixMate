@@ -13,11 +13,11 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.mixmate.databinding.FragmentCameraBinding
+import com.example.mixmate.databinding.FragmentCheckBinding
 
-class CameraFragment : Fragment() {
+class CheckFragment : Fragment() {
 
-  private var _binding: FragmentCameraBinding? = null
+  private var _binding: FragmentCheckBinding? = null
   private val binding get() = _binding!!
 
   private var cameraProvider: ProcessCameraProvider? = null
@@ -28,7 +28,7 @@ class CameraFragment : Fragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    _binding = FragmentCameraBinding.inflate(inflater, container, false)
+    _binding = FragmentCheckBinding.inflate(inflater, container, false)
     return binding.root
   }
 
