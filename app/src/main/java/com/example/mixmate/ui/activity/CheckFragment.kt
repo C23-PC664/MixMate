@@ -1,27 +1,53 @@
 package com.example.mixmate.ui.activity
+
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Matrix
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Surface
 import android.view.View
 import android.view.ViewGroup
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.mixmate.api.ApiManager
+import com.example.mixmate.api.ApiService
+import com.example.mixmate.data.ResponseData
 import com.example.mixmate.databinding.FragmentCheckBinding
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class CheckFragment : Fragment() {
 
   private var _binding: FragmentCheckBinding? = null
   private val binding get() = _binding!!
-
   private var cameraProvider: ProcessCameraProvider? = null
   private var camera: Camera? = null
+  private var imageCapture: ImageCapture? = null
+  private var currentPhotoUri: Uri? = null
+  private var currentPhotoFile: File? = null
+
+  private lateinit var apiService: ApiService
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -34,14 +60,14 @@ class CheckFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    binding.buttonSubmit.setOnClickListener {
-      // Handle submit button click
-    }
+    setupViews()
+    requestCameraPermission()
   }
+
 
   override fun onResume() {
     super.onResume()
-    requestCameraPermission()
+    startCamera()
   }
 
   override fun onPause() {
@@ -53,6 +79,47 @@ class CheckFragment : Fragment() {
     super.onDestroyView()
     _binding = null
   }
+
+  private fun setupViews() {
+    binding.buttonSubmit.setOnClickListener {
+      val photoFile = currentPhotoFile ?: return@setOnClickListener
+      binding.loadingView.visibility = View.VISIBLE
+      sendImage(photoFile)
+    }
+
+    binding.buttonTakePicture.setOnClickListener {
+      capturePhoto()
+    }
+
+    binding.buttonDelete.setOnClickListener {
+      deletePhoto()
+    }
+  }
+
+  private fun sendImage(imageFile: File) {
+    val requestBody = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
+    val multipartBody = MultipartBody.Part.createFormData("image", imageFile.name, requestBody)
+
+    apiService = ApiManager.create()
+    val call = apiService.uploadImage(multipartBody)
+    call.enqueue(object : Callback<ResponseData> {
+      override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
+        binding.loadingView.visibility = View.GONE
+        if (response.isSuccessful) {
+          val apiResponse = response.body()
+          Log.d(TAG, "API Response: $apiResponse")
+        } else {
+          // Handle error response
+          // ...
+        }
+      }
+
+      override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+        binding.loadingView.visibility = View.GONE
+      }
+    })
+  }
+
 
   private fun requestCameraPermission() {
     if (ContextCompat.checkSelfPermission(
@@ -87,13 +154,17 @@ class CheckFragment : Fragment() {
       it.setSurfaceProvider(binding.previewView.surfaceProvider)
     }
 
+    imageCapture = ImageCapture.Builder().build()
+    imageCapture?.targetRotation = Surface.ROTATION_0
+
     try {
       cameraProvider?.unbindAll()
 
       camera = cameraProvider?.bindToLifecycle(
         this,
         cameraSelector,
-        preview
+        preview,
+        imageCapture
       )
     } catch (e: Exception) {
       Log.e(TAG, "Failed to bind camera use cases: ${e.message}")
@@ -104,12 +175,93 @@ class CheckFragment : Fragment() {
     cameraProvider?.unbindAll()
     cameraProvider = null
     camera = null
+    imageCapture = null
+  }
+
+  private fun capturePhoto() {
+    val outputFile = createOutputFile()
+    val outputOptions = ImageCapture.OutputFileOptions.Builder(outputFile).build()
+
+    imageCapture?.takePicture(
+      outputOptions,
+      ContextCompat.getMainExecutor(requireContext()),
+      object : ImageCapture.OnImageSavedCallback {
+        override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+          val savedUri = outputFileResults.savedUri ?: Uri.fromFile(outputFile)
+          currentPhotoUri = savedUri
+          currentPhotoFile = File(savedUri.path)
+          displayCapturedPhoto(savedUri)
+        }
+
+        override fun onError(exception: ImageCaptureException) {
+          Log.e(TAG, "Error capturing photo: ${exception.message}")
+        }
+      }
+    )
+  }
+
+  private fun createOutputFile(): File {
+    val timeStamp =
+      SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+    val storageDir =
+      requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+    return File.createTempFile("IMG_${timeStamp}_", ".jpg", storageDir)
+  }
+
+  private fun displayCapturedPhoto(photoUri: Uri) {
+    binding.previewView.visibility = View.GONE
+    binding.imageView.visibility = View.VISIBLE
+
+    val bitmap =
+      MediaStore.Images.Media.getBitmap(requireContext().contentResolver, photoUri)
+
+    val matrix = Matrix()
+    matrix.postScale(-1f, 1f)
+    matrix.postRotate(90f)
+
+    val flippedBitmap = Bitmap.createBitmap(
+      bitmap,
+      0,
+      0,
+      bitmap.width,
+      bitmap.height,
+      matrix,
+      true
+    )
+
+    binding.imageView.setImageBitmap(flippedBitmap)
+
+    binding.btnCheckContainer.visibility = View.VISIBLE
+    binding.buttonTakePicture.visibility = View.GONE
+  }
+
+  private fun deletePhoto() {
+    currentPhotoUri?.let { photoUri ->
+      val file = File(photoUri.path)
+      if (file.exists()) {
+        file.delete()
+        currentPhotoFile?.delete() // Hapus juga file lokalnya
+      }
+      currentPhotoUri = null
+      currentPhotoFile = null
+      binding.imageView.setImageDrawable(null)
+      binding.imageView.visibility = View.GONE
+      binding.previewView.visibility = View.VISIBLE
+
+      binding.btnCheckContainer.visibility = View.GONE
+      binding.buttonTakePicture.visibility = View.VISIBLE
+    }
   }
 
   companion object {
-    private const val TAG = "CameraFragment"
+    private const val TAG = "CheckFragment"
     private const val REQUEST_CAMERA_PERMISSION = 123
+    private const val BASE_URL = "https://predict-dn2kyiya7a-et.a.run.app/"
   }
 }
+
+
+
+
 
 
