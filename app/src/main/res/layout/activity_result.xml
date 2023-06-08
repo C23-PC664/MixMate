@@ -1,0 +1,120 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="32dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/inter_bold"
+            android:gravity="start"
+            android:text="Your Customized \nOutfit Recommendation!"
+            android:textSize="24sp"
+            android:textColor="#141429"
+            android:textStyle="bold"
+            tools:ignore="RtlHardcoded" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_underline"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="start"/>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="218dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="20dp"
+            app:cardBackgroundColor="#9445958E"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#00000000">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/result_user_photo"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ic_check"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+
+                <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Gender:"
+                    android:textColor="#FCFCFC"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:textSize="13sp"
+                    android:textColor="#FCFCFC"
+                    android:fontFamily="@font/inter_bold" />
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Race:"
+                        android:textColor="#FCFCFC"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_race"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Asian"
+                        android:textSize="13sp"
+                        android:textColor="#FCFCFC"
+                        android:fontFamily="@font/inter_bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,8 +1,10 @@
 package com.example.mixmate.ui.activity
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
 import android.os.Bundle
@@ -108,6 +110,10 @@ class CheckFragment : Fragment() {
         if (response.isSuccessful) {
           val apiResponse = response.body()
           Log.d(TAG, "API Response: $apiResponse")
+
+          apiResponse?.let {
+            startResultActivity(currentPhotoUri!!, it)
+          }
         } else {
           // Handle error response
           // ...
@@ -119,6 +125,15 @@ class CheckFragment : Fragment() {
       }
     })
   }
+
+  private fun startResultActivity(photo: Uri, apiResponse: ResponseData) {
+    val intent = Intent(requireContext(), ResultActivity::class.java)
+    intent.putExtra("photo", photo)
+    intent.putExtra("api_response", apiResponse)
+    startActivity(intent)
+  }
+
+
 
 
   private fun requestCameraPermission() {
