@@ -15,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.Surface
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -38,6 +39,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 class CheckFragment : Fragment() {
 
@@ -116,15 +118,22 @@ class CheckFragment : Fragment() {
           }
         } else {
           // Handle error response
-          // ...
+          val errorMessage = response.message()
+          Log.e(TAG, "API Error: $errorMessage")
+          Toast.makeText(requireContext(), "Error: $errorMessage", Toast.LENGTH_SHORT).show()
         }
       }
 
       override fun onFailure(call: Call<ResponseData>, t: Throwable) {
         binding.loadingView.visibility = View.GONE
+        Log.e(TAG, "API Call Failed: ${t.message}")
+        Toast.makeText(requireContext(), "API Call Failed: ${t.message}", Toast.LENGTH_SHORT).show()
       }
     })
+
+    call.timeout().timeout(60, TimeUnit.SECONDS) // Set timeout to 60 seconds
   }
+
 
   private fun startResultActivity(photo: Uri, apiResponse: ResponseData) {
     val intent = Intent(requireContext(), ResultActivity::class.java)

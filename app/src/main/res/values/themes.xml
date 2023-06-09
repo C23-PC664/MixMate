@@ -23,5 +23,35 @@
         <item name="cornerSize">10dp</item>
     </style>
 
+    <style name="top_only_corner" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_top_only_corners</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay_card_top_only_corners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="bottom_only_corner" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_bottom_only_corners</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay_card_bottom_only_corners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+    </style>
+
+
+
+
+
 
 </resources>

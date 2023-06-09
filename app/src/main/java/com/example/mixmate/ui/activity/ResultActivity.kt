@@ -8,9 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mixmate.R
 import com.example.mixmate.data.ResponseData
 import com.example.mixmate.databinding.ActivityResultBinding
+import com.example.mixmate.ui.adapters.ResultAdapter
 import java.io.IOException
 
 
@@ -32,8 +35,16 @@ class ResultActivity : AppCompatActivity() {
     if (photoUri != null) {
       flipImageHorizontally(binding.resultUserPhoto, photoUri)
     }
+    binding.tvStyle.text = apiResponse?.style
 
     Log.d("RESULT_ACTIVITY", "API Response: $apiResponse")
+
+    setupRecycleView()
+  }
+
+  private fun setupRecycleView() {
+    binding.resultRv.layoutManager = GridLayoutManager(this, 2)
+    binding.resultRv.adapter = ResultAdapter(apiResponse?.outfits!!)
   }
 
   private fun flipImageHorizontally(imageView: ImageView, photoUri: Uri?) {
