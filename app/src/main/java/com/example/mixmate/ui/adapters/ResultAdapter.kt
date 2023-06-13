@@ -37,10 +37,12 @@ class ResultAdapter(private val itemList: List<Outfit>) : RecyclerView.Adapter<R
       val itemName: TextView = itemView.findViewById(R.id.tv_item_name)
       val itemPrice: TextView = itemView.findViewById(R.id.tv_item_price)
       val itemImg: ImageView = itemView.findViewById(R.id.item_img)
+      val kategori: TextView = itemView.findViewById(R.id.badge_category)
 
       itemName.text = item.item_name
       itemPrice.text = formatRupiah(item.price.toInt())
       itemImg.load(item.images)
+      kategori.text = item.kategori
     }
 
     fun formatRupiah(amount: Int): String {

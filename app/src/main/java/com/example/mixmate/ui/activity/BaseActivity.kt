@@ -25,7 +25,7 @@ class BaseActivity : AppCompatActivity() {
           return@OnNavigationItemSelectedListener true
         }
         R.id.nav_profile -> {
-          showFragment(ProfileFragment())
+          showFragment(LoginFragment())
           return@OnNavigationItemSelectedListener true
         }
       }

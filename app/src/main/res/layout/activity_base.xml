@@ -20,15 +20,15 @@
         android:layout_centerInParent="true"
         android:layout_gravity="bottom"
         android:background="@drawable/bottom_nav_container_background"
-        app:itemIconTint="@drawable/bottom_nav_icon_color"
-        app:itemTextColor="@drawable/bottom_nav_text_color"
-        app:labelVisibilityMode="labeled"
+        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
+
         app:itemIconSize="18dp"
+        app:itemIconTint="@drawable/bottom_nav_icon_color"
         app:itemPaddingBottom="10sp"
         app:itemPaddingTop="10sp"
         app:itemTextAppearance="@style/BottomNavigationTextAppearance"
-        app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
-
+        app:itemTextColor="@drawable/bottom_nav_text_color"
+        app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_navigation_menu" />
 
 

@@ -25,9 +25,6 @@
             android:name=".ui.activity.ResultActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.LoginActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.activity.BaseActivity"
             android:exported="true">
             <intent-filter>
