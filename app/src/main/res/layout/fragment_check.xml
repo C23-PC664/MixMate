@@ -21,7 +21,7 @@
             android:gravity="start"
             android:text="Unleash the Magic \nof Fashion with a Selfie!"
             android:textSize="24sp"
-            android:textColor="#100A07"
+            android:textColor="@color/smoky_black"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded" />
 

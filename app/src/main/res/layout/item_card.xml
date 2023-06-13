@@ -1,91 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:strokeColor="#DAD3CF"
-    app:cardCornerRadius="10dp"
-    app:strokeWidth="1dp">
+    android:layout_margin="5dp">
 
-    <RelativeLayout
+    <!-- Media -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/item_img"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="136dp"
+        android:src="@drawable/ic_check"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"
+        app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
-        <!-- Media -->
-        <ImageView
-            android:id="@+id/item_img"
-            android:layout_width="match_parent"
-            android:layout_height="123dp"
-            app:srcCompat="@drawable/ic_check"
-            android:scaleType="fitCenter"
-            android:background="#fcfcfc"
-            />
+    <!-- Badge Category -->
+    <TextView
+        android:id="@+id/badge_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingVertical="4dp"
+        android:text="Category"
+        android:textSize="9sp"
+        android:textColor="#1E1E1E"
+        android:background="@drawable/badge_background"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/inter_medium"
+        android:textStyle="normal"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:minWidth="30dp"
+        android:textAlignment="center" />
 
-        <!-- Badge Category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:paddingVertical="15dp"
+        android:layout_below="@id/item_img">
+
         <TextView
-            android:id="@+id/badge_category"
+            android:id="@+id/tv_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingVertical="4dp"
-            android:text="Category"
-            android:textSize="9sp"
-            android:textColor="#1E1E1E"
-            android:background="@drawable/badge_background"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="4dp"
-            android:layout_marginTop="4dp"
+            android:fontFamily="@font/inter_semibold"
+            android:maxLines="2"
+            android:text="Nike Sportswear Heritage 86"
+            android:textColor="@color/smoky_black"
+            android:textSize="12sp"
+            android:textStyle="normal" />
 
+        <TextView
+            android:id="@+id/tv_item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp 26.000"
             android:fontFamily="@font/inter_medium"
             android:textStyle="normal"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:minWidth="30dp"
-            android:textAlignment="center" />
+            android:textSize="11sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/coffee" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="78dp"
-            android:orientation="vertical"
-            android:background="#DAD3CF"
-            android:padding="7dp"
-            android:layout_below="@id/item_img">
-
-            <TextView
-                android:id="@+id/tv_item_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nike Sportswear Heritage 86"
-                android:maxLines="2"
-                android:textAppearance="?attr/textAppearanceTitleMedium"
-                android:fontFamily="@font/inter_medium"
-                android:textStyle="normal"
-                android:textSize="13sp"
-                android:lineHeight="15sp"
-                android:textColor="#100A07" />
-
-            <TextView
-                android:id="@+id/tv_item_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rp 26.000"
-                android:fontFamily="@font/inter_bold"
-                android:textStyle="normal"
-                android:textSize="13sp"
-                android:layout_marginBottom="5dp"
-                android:textColor="#724E3E" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
-
-</com.google.android.material.card.MaterialCardView>
-
-
+    </LinearLayout>
+</RelativeLayout>

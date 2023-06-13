@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#fcfcfc</color>
     <color name="dark_blue">#1F2D5A</color>
+
+    <color name="coffee">#724E3E</color>
+    <color name="sunset">#FAD4A5</color>
+    <color name="smoky_black">#100A07</color>
+    <color name="caribbean_current">#156064</color>
+    <color name="viridian">#57886C</color>
+
+
 </resources>

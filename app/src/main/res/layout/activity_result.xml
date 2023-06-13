@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fcfcfc">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,96 +20,104 @@
             android:fontFamily="@font/inter_bold"
             android:gravity="start"
             android:text="Your Customized \nOutfit Recommendation!"
-            android:textSize="24sp"
-            android:textColor="#100A07"
+            android:textSize="18sp"
+            android:textColor="@color/smoky_black"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_underline"
-            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_underline_2"
+            android:layout_marginTop="5dp"
             android:layout_gravity="start"/>
 
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="218dp"
-            android:layout_marginVertical="30dp"
-            app:cardBackgroundColor="#87695B"
+            android:layout_height="110dp"
+            android:layout_marginVertical="20dp"
+            app:cardBackgroundColor="@android:color/transparent"
             app:cardCornerRadius="10dp"
             app:cardElevation="0dp"
-            app:strokeColor="#00000000">
+            app:strokeColor="@color/smoky_black">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:orientation="horizontal">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/result_user_photo"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="130dp"
+                    android:layout_height="80dp"
                     android:src="@drawable/ic_check"
                     android:scaleType="centerCrop"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
                     app:shapeAppearanceOverlay="@style/RoundedImageView" />
 
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center">
 
-                    <TextView
-                        android:id="@+id/tv_gender_label"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="Gender:"
-                        android:textColor="#FCFCFC"
-                        android:textSize="13sp" />
+                        android:layout_marginTop="10dp">
 
-                    <TextView
-                        android:id="@+id/tv_gender"
+                        <TextView
+                            android:id="@+id/tv_gender_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Gender:"
+                            android:textColor="@color/smoky_black"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tv_gender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/tv_gender_label"
+                            android:text="Male"
+                            android:textSize="13sp"
+                            android:textColor="@color/smoky_black"
+                            android:fontFamily="@font/inter_bold" />
+
+                    </RelativeLayout>
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/tv_gender_label"
-                        android:text="Male"
-                        android:textSize="13sp"
-                        android:textColor="#FCFCFC"
-                        android:fontFamily="@font/inter_bold" />
+                        android:layout_height="wrap_content">
 
-                </RelativeLayout>
+                        <TextView
+                            android:id="@+id/tv_race_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Race:"
+                            android:textColor="@color/smoky_black"
+                            android:textSize="13sp" />
 
+                        <TextView
+                            android:id="@+id/tv_race"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/tv_race_label"
+                            android:text="Asian"
+                            android:textSize="13sp"
+                            android:textColor="@color/smoky_black"
+                            android:fontFamily="@font/inter_bold" />
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/tv_race_label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="Race:"
-                        android:textColor="#FCFCFC"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:id="@+id/tv_race"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/tv_race_label"
-                        android:text="Asian"
-                        android:textSize="13sp"
-                        android:textColor="#FCFCFC"
-                        android:fontFamily="@font/inter_bold" />
-
-                </RelativeLayout>
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -129,7 +137,7 @@
                 android:layout_alignParentStart="true"
                 android:text="Recommended Style: "
                 android:textSize="18sp"
-                android:textColor="#100A07"
+                android:textColor="@color/smoky_black"
                 android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
 
@@ -141,29 +149,19 @@
                 android:layout_toEndOf="@id/tv_style_label"
                 android:text="Casual"
                 android:textSize="18sp"
-                android:textColor="#724E3E"
+                android:textColor="@color/viridian"
                 android:textStyle="bold"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
 
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_underline_2"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="start"/>
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/result_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginVertical="20dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
-            android:layout_marginBottom="30dp"
             tools:listitem="@layout/item_card" />
 
     </LinearLayout>

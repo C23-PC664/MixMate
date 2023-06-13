@@ -5,19 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fcfcfc">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/login_logo"
             android:layout_gravity="start"
-            android:scaleType="fitXY"
-            />
+            android:scaleType="fitXY" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,13 +32,14 @@
                 android:orientation="vertical"
                 android:layout_gravity="start"
                 android:layout_marginTop="60dp">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Unlock More with Login"
                     android:fontFamily="@font/inter_bold"
                     android:textSize="24dp"
-                    android:textColor="#100A07"/>
+                    android:textColor="@color/smoky_black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -46,7 +47,7 @@
                     android:text="Discover Endless Style Possibilities."
                     android:fontFamily="@font/inter_medium"
                     android:textSize="18dp"
-                    android:textColor="#100A07"/>
+                    android:textColor="@color/smoky_black" />
 
             </LinearLayout>
 
@@ -61,11 +62,10 @@
                     android:layout_height="60dp"
                     android:hint="Email Address"
                     android:textColorHint="@drawable/input_selector"
-
                     android:background="@drawable/custom_input_background"
                     android:inputType="textEmailAddress"
-                    android:textColor="#100A07"
-                    android:fontFamily="@font/inter_medium"/>
+                    android:textColor="@color/smoky_black"
+                    android:fontFamily="@font/inter_medium" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,9 +82,8 @@
                     android:textColorHint="@drawable/input_selector"
                     android:background="@drawable/custom_input_background"
                     android:inputType="textPassword"
-                    android:textColor="#100A07"
-                    android:fontFamily="@font/inter_medium"/>
-
+                    android:textColor="@color/smoky_black"
+                    android:fontFamily="@font/inter_medium" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,11 +92,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:text="Forgot Password?"
-                android:textColor="#46958E"
+                android:textColor="@color/viridian"
                 android:textSize="14dp"
                 android:fontFamily="@font/inter_medium"
-                android:layout_marginTop="15dp"/>
-
+                android:layout_marginTop="15dp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_submit"
@@ -106,25 +104,25 @@
                 android:layout_gravity="center"
                 android:text="Sign In"
                 android:textSize="16sp"
-                android:textColor="#FCFCFC"
+                android:textColor="@color/white"
                 android:background="@drawable/button_background"
                 android:fontFamily="@font/inter_bold"
-                android:layout_marginTop="30dp"/>
+                android:layout_marginTop="30dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginVertical="15dp"
-                >
+                android:layout_marginVertical="15dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Don’t have an account? "
-                    android:textColor="#100A07"
+                    android:textColor="@color/smoky_black"
                     android:textSize="14dp"
-                    android:fontFamily="@font/inter_medium"/>
+                    android:fontFamily="@font/inter_medium" />
 
                 <TextView
                     android:id="@+id/btn_sign_up"
@@ -132,14 +130,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Sign Up"
-                    android:textColor="#46958E"
+                    android:textColor="@color/viridian"
                     android:textSize="14dp"
                     android:fontFamily="@font/inter_medium" />
+
             </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
-
-
 
 </ScrollView>
