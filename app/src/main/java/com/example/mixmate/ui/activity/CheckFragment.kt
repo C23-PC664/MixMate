@@ -31,10 +31,13 @@ import com.example.mixmate.data.ResponseData
 import com.example.mixmate.databinding.FragmentCheckBinding
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.OkHttpClient
 import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -104,7 +107,20 @@ class CheckFragment : Fragment() {
     val requestBody = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
     val multipartBody = MultipartBody.Part.createFormData("image", imageFile.name, requestBody)
 
-    apiService = ApiManager.create()
+    val okHttpClient = OkHttpClient.Builder()
+      .connectTimeout(10, TimeUnit.MINUTES) // Set timeout to 10 minutes
+      .readTimeout(10, TimeUnit.MINUTES)
+      .writeTimeout(10, TimeUnit.MINUTES)
+      .build()
+
+    val retrofit = Retrofit.Builder()
+      .baseUrl(BASE_URL)
+      .client(okHttpClient)
+      .addConverterFactory(GsonConverterFactory.create())
+      .build()
+
+    apiService = retrofit.create(ApiService::class.java)
+
     val call = apiService.uploadImage(multipartBody)
     call.enqueue(object : Callback<ResponseData> {
       override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
@@ -112,7 +128,6 @@ class CheckFragment : Fragment() {
         if (response.isSuccessful) {
           val apiResponse = response.body()
           Log.d(TAG, "API Response: $apiResponse")
-
           apiResponse?.let {
             startResultActivity(currentPhotoUri!!, it)
           }
@@ -130,8 +145,6 @@ class CheckFragment : Fragment() {
         Toast.makeText(requireContext(), "API Call Failed: ${t.message}", Toast.LENGTH_SHORT).show()
       }
     })
-
-    call.timeout().timeout(60, TimeUnit.SECONDS) // Set timeout to 60 seconds
   }
 
 

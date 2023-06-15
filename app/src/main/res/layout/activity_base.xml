@@ -22,21 +22,12 @@
         android:background="@drawable/bottom_nav_container_background"
         app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
         app:itemIconSize="18dp"
+        app:itemIconTint="@drawable/bottom_nav_icon_color"
         app:itemPaddingBottom="10sp"
         app:itemPaddingTop="10sp"
-        app:itemIconTint="@drawable/bottom_nav_icon_color"
+        app:itemTextAppearance="@style/BottomNavigationTextAppearance.Small"
         app:itemTextColor="@drawable/bottom_nav_text_color"
-        app:itemTextAppearance="@style/BottomNavigationTextAppearance"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_navigation_menu" />
-
-
-
-
-
-
-
-
-
 
 </RelativeLayout>

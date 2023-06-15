@@ -51,41 +51,31 @@
 
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp">
+                android:layout_height="50dp"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:hint="Email Address"
+                android:textColorHint="@drawable/input_selector"
+                android:background="@drawable/custom_input_background"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/smoky_black"
+                android:fontFamily="@font/inter_medium" />
 
-                <EditText
-                    android:id="@+id/emailEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:hint="Email Address"
-                    android:textColorHint="@drawable/input_selector"
-                    android:background="@drawable/custom_input_background"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/smoky_black"
-                    android:fontFamily="@font/inter_medium" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
+            <EditText
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp">
-
-                <EditText
-                    android:id="@+id/et_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:hint="Password"
-                    android:textColorHint="@drawable/input_selector"
-                    android:background="@drawable/custom_input_background"
-                    android:inputType="textPassword"
-                    android:textColor="@color/smoky_black"
-                    android:fontFamily="@font/inter_medium" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="50dp"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="15dp"
+                android:hint="Password"
+                android:textColorHint="@drawable/input_selector"
+                android:background="@drawable/custom_input_background"
+                android:inputType="textPassword"
+                android:textColor="@color/smoky_black"
+                android:fontFamily="@font/inter_medium" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -100,14 +90,14 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_submit"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:text="Sign In"
                 android:textSize="16sp"
                 android:textColor="@color/white"
                 android:background="@drawable/button_background"
                 android:fontFamily="@font/inter_bold"
-                android:layout_marginTop="30dp" />
+                android:layout_marginTop="20dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
