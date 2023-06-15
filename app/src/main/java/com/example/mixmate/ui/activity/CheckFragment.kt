@@ -9,6 +9,8 @@ import android.graphics.Matrix
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -55,6 +57,10 @@ class CheckFragment : Fragment() {
   private var currentPhotoFile: File? = null
 
   private lateinit var apiService: ApiService
+
+  private var apiTimeoutHandler = Handler()
+  private var apiTimeoutRunnable: Runnable? = null
+
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -122,9 +128,25 @@ class CheckFragment : Fragment() {
     apiService = retrofit.create(ApiService::class.java)
 
     val call = apiService.uploadImage(multipartBody)
+
+    val apiTimeoutRunnable = object : Runnable {
+      override fun run() {
+        val toastMessage = "We apologize for the delay. Processing is taking longer than expected."
+        Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_SHORT).show()
+        apiTimeoutHandler?.postDelayed(this, 5000)
+      }
+    }
+
+
+    apiTimeoutHandler = Handler(Looper.getMainLooper())
+
+    apiTimeoutHandler?.postDelayed(apiTimeoutRunnable, 5000)
+
     call.enqueue(object : Callback<ResponseData> {
       override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
+        apiTimeoutHandler?.removeCallbacks(apiTimeoutRunnable)
         binding.loadingView.visibility = View.GONE
+
         if (response.isSuccessful) {
           val apiResponse = response.body()
           Log.d(TAG, "API Response: $apiResponse")
@@ -140,7 +162,9 @@ class CheckFragment : Fragment() {
       }
 
       override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+        apiTimeoutHandler?.removeCallbacks(apiTimeoutRunnable)
         binding.loadingView.visibility = View.GONE
+
         Log.e(TAG, "API Call Failed: ${t.message}")
         Toast.makeText(requireContext(), "API Call Failed: ${t.message}", Toast.LENGTH_SHORT).show()
       }
@@ -154,8 +178,6 @@ class CheckFragment : Fragment() {
     intent.putExtra("api_response", apiResponse)
     startActivity(intent)
   }
-
-
 
 
   private fun requestCameraPermission() {
